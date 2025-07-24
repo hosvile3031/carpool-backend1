@@ -1,6 +1,9 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000/api';
+// Dynamic API URL based on environment
+const API_BASE_URL = import.meta.env.PROD 
+  ? '/api'  // In production, use relative path (same domain)
+  : 'http://localhost:3000/api';  // In development, use localhost
 
 class ApiService {
   private api: AxiosInstance;

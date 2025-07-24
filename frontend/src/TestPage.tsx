@@ -10,11 +10,18 @@ const TestPageContent: React.FC = () => {
   const [testResults, setTestResults] = useState<string[]>([]);
   const { user, isAuthenticated, logout } = useAuth();
 
+  // Dynamic API URL based on environment
+  const getApiUrl = (endpoint: string) => {
+    return import.meta.env.PROD 
+      ? endpoint  // In production, use relative path
+      : `http://localhost:3000${endpoint}`;  // In development, use localhost
+  };
+
   // Test API connectivity
   useEffect(() => {
     const testAPI = async () => {
       try {
-        const response = await fetch('http://localhost:3000/health');
+        const response = await fetch(getApiUrl('/health'));
         const data = await response.json();
         setApiStatus(`✅ Backend Connected: ${data.message}`);
       } catch (error) {
@@ -31,12 +38,12 @@ const TestPageContent: React.FC = () => {
     try {
       // Test 1: Health check
       results.push('🔍 Testing API Health...');
-      const health = await fetch('http://localhost:3000/health');
+      const health = await fetch(getApiUrl('/health'));
       const healthData = await health.json();
       results.push(`✅ Health Check: ${healthData.status}`);
 
       // Test 2: API Documentation
-      const docs = await fetch('http://localhost:3000/');
+      const docs = await fetch(getApiUrl('/api'));
       const docsData = await docs.json();
       results.push(`✅ API Docs: Version ${docsData.version}`);
 

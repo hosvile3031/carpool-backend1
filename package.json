@@ -19,7 +19,8 @@
     "heroku-postbuild": "cd frontend && npm install && npm run build",
     "deploy:prep": "node deploy.js",
     "deploy:wizard": "node deploy-wizard.js",
-    "demo": "node demo-server.js"
+    "demo": "node demo-server.js",
+    "production": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "express": "^4.18.2",

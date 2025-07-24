@@ -123,8 +123,8 @@ app.get('/api/rides', (req, res) => {
 
 // Handle React routing
 app.get('*', (req, res) => {
-  // Skip API routes
-  if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/') || req.path === '/health') {
+  // Skip API routes (but not /health)
+  if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/')) {
     return res.status(404).json({ success: false, message: 'API endpoint not configured yet' });
   }
   res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));

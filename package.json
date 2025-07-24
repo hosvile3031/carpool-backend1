@@ -15,7 +15,7 @@
     "build": "cd frontend && npm run build",
     "build:full": "npm install && cd frontend && npm install && npm run build",
     "build:render": "npm ci && cd frontend && npm ci && npm run build",
-    "postinstall": "cd frontend && npm install",
+    "postinstall": "cd frontend && npm install && npm run build",
     "heroku-postbuild": "cd frontend && npm install && npm run build",
     "deploy:prep": "node deploy.js",
     "deploy:wizard": "node deploy-wizard.js",

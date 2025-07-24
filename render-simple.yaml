@@ -3,7 +3,7 @@ services:
     name: carpool-backend
     env: node
     plan: free
-    buildCommand: npm install
+    buildCommand: npm install --production=false
     startCommand: node demo-server.js
     envVars:
       - key: NODE_ENV

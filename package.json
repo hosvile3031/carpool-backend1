@@ -20,7 +20,20 @@
     "deploy:prep": "node deploy.js",
     "deploy:wizard": "node deploy-wizard.js",
     "demo": "node demo-server.js",
-    "production": "NODE_ENV=production node server.js"
+    "production": "NODE_ENV=production node server.js",
+    "setup:indexes": "node setup-production-indexes.js",
+    "setup:production": "npm run validate:env && npm run setup:indexes",
+    "setup:production:safe": "npm run validate:env || true",
+    "validate:env": "node validate-environment.js",
+    "validate:env:render": "node validate-environment.js render",
+    "validate:env:heroku": "node validate-environment.js heroku",
+    "validate:env:railway": "node validate-environment.js railway",
+    "test:production": "node test-production.js",
+    "test:production:auth": "node test-production.js --auth",
+    "health:check": "curl -f http://localhost:3000/health || exit 1",
+    "deploy:render": "npm run validate:env:render && npm run build:render",
+    "deploy:heroku": "npm run validate:env:heroku && npm run build:full",
+    "deploy:railway": "npm run validate:env:railway && npm run build:full"
   },
   "dependencies": {
     "express": "^4.18.2",

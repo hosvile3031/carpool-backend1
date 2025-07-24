@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: carpool-backend
+    env: node
+    plan: free
+    buildCommand: npm run build:full
+    startCommand: npm run demo
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000

@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+let PORT = process.env.PORT || 3001;
 
 // Render.com uses port 10000 by default
 if (process.env.NODE_ENV === 'production' && !process.env.PORT) {

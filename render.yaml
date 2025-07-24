@@ -3,10 +3,8 @@ services:
     name: carpool-backend
     env: node
     plan: free
-    buildCommand: npm run build:full
+    buildCommand: npm ci && cd frontend && npm ci && npm run build
     startCommand: npm run demo
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 10000

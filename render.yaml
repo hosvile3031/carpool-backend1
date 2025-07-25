@@ -3,8 +3,8 @@ services:
     name: carpool-backend
     env: node
     plan: free
-    buildCommand: npm ci && npm run build:render
-    startCommand: npm start
+    buildCommand: npm ci
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production

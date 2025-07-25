@@ -55,20 +55,6 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Static files
 app.use('/uploads', express.static('uploads'));
 
-// Serve frontend static files in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'frontend/dist')));
-  
-  // Handle React routing, return all requests to React app
-  app.get('*', (req, res) => {
-    // Skip API routes
-    if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/') || req.path === '/health') {
-      return res.status(404).json({ success: false, message: 'API route not found' });
-    }
-    res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
-  });
-}
-
 // Database connection with fallback
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/carpool';
 console.log('Attempting to connect to database...');
@@ -111,7 +97,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// Routes - MUST come before frontend catch-all
 app.use('/api/auth', authRoutes);
 app.use('/api/driver', driverRoutes);
 app.use('/api/rides', rideRoutes);

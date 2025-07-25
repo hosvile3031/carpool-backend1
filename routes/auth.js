@@ -82,9 +82,16 @@ router.post('/register', [
 
   } catch (error) {
     console.error('Registration error:', error);
+    console.error('Error stack:', error.stack);
+    console.error('Error details:', {
+      name: error.name,
+      message: error.message,
+      code: error.code
+    });
     res.status(500).json({
       success: false,
-      message: 'Server error during registration'
+      message: 'Server error during registration',
+      ...(process.env.NODE_ENV === 'development' && { error: error.message })
     });
   }
 });

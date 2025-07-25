@@ -26,9 +26,9 @@
     "test:production": "node test-production.js",
     "test:production:auth": "node test-production.js --auth",
     "health:check": "curl -f http://localhost:3000/health || exit 1",
-    "deploy:render": "npm run validate:env:render && npm run build:render",
-    "deploy:heroku": "npm run validate:env:heroku && npm run build:full",
-    "deploy:railway": "npm run validate:env:railway && npm run build:full"
+    "deploy:render": "npm run validate:env:render",
+    "deploy:heroku": "npm run validate:env:heroku",
+    "deploy:railway": "npm run validate:env:railway"
   },
   "dependencies": {
     "express": "^4.18.2",

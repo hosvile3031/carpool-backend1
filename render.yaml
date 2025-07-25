@@ -3,12 +3,12 @@ services:
     name: carpool-backend
     env: node
     plan: free
-    buildCommand: npm install
-    startCommand: node server.js
+    buildCommand: npm ci && npm run build:render
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: JWT_SECRET
-        value: carpool-super-secret-jwt-key-2024-production-grade-change-this
+        value: 3dd3333420a998257d86483b82484f31632a7ea60020634860f3c59e66c91862b92ce592c42d967cf2ac418d2db40d92349db8fffc204cfdf9687e7b3a205116
       - key: MONGODB_URI
-        value: # Add your MongoDB Atlas connection string here
+        value: mongodb+srv://sandraallen3031:ridealongflo@cluster0.zfzhnnv.mongodb.net/carpool?retryWrites=true&w=majority&appName=Cluster0

@@ -69,8 +69,10 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/carpool', {
+// Database connection with fallback
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/carpool';
+console.log('Attempting to connect to database...');
+mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

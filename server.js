@@ -58,12 +58,31 @@ app.use('/uploads', express.static('uploads'));
 // Database connection with fallback
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/carpool';
 console.log('Attempting to connect to database...');
+console.log('MongoDB URI format:', mongoUri.replace(/:\/\/[^@]*@/, '://****:****@'));
+
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // Increase timeout to 30 seconds
+  connectTimeoutMS: 30000,
+  bufferMaxEntries: 0,
+  bufferCommands: false,
 })
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('MongoDB connection error:', err));
+.then(() => {
+  console.log('✅ Successfully connected to MongoDB Atlas');
+  console.log('Database ready for operations');
+})
+.catch(err => {
+  console.error('❌ MongoDB connection failed:');
+  console.error('Error details:', err.message);
+  console.error('Check network access in MongoDB Atlas');
+  
+  // Don't exit in production, let health checks handle it
+  if (process.env.NODE_ENV !== 'production') {
+    console.error('Exiting due to database connection failure...');
+    process.exit(1);
+  }
+});
 
 // Socket.IO for real-time features
 io.on('connection', (socket) => {

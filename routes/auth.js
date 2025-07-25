@@ -14,7 +14,7 @@ router.post('/register', [
   body('firstName').trim().notEmpty().withMessage('First name is required'),
   body('lastName').trim().notEmpty().withMessage('Last name is required'),
   body('email').isEmail().withMessage('Please enter a valid email'),
-  body('phone').isMobilePhone().withMessage('Please enter a valid phone number'),
+  body('phone').matches(/^[\+]?[0-9\s\-\(\)]{10,15}$/).withMessage('Please enter a valid phone number'),
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
   body('dateOfBirth').isISO8601().withMessage('Please enter a valid date of birth'),
   body('gender').isIn(['male', 'female', 'other']).withMessage('Please select a valid gender')

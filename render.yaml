@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: carpool-backend-api
+    name: carpool-api-server
     env: node
     plan: free
-    buildCommand: npm ci --only=production
-    startCommand: node server.js
+    buildCommand: npm install --production
+    startCommand: NODE_ENV=production node server.js
     envVars:
       - key: NODE_ENV
         value: production

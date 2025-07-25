@@ -173,8 +173,12 @@ const PORT = process.env.PORT || 3000;
 // Only start server if not in test environment
 if (process.env.NODE_ENV !== 'test') {
   server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🚀 BACKEND API SERVER STARTED`);
+    console.log(`📡 Server is running on port ${PORT}`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`📅 Started at: ${new Date().toISOString()}`);
+    console.log(`🔗 Health check: http://localhost:${PORT}/health`);
+    console.log(`📋 API docs: http://localhost:${PORT}/`);
   });
 }
 

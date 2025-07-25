@@ -1,0 +1,35 @@
+# Ignore frontend files for backend-only deployment
+frontend/
+dist/
+build/
+*.html
+*.css
+*.js.map
+*.ts
+*.tsx
+*.jsx
+
+# Development files
+.env
+.env.*
+*.log
+logs/
+.DS_Store
+Thumbs.db
+
+# Testing
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

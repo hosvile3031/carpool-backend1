@@ -140,6 +140,9 @@ app.get('/', (req, res) => {
   res.json({
     message: 'Carpool Backend API',
     version: '2.0.0',
+    status: 'Backend API Server Running',
+    environment: process.env.NODE_ENV,
+    timestamp: new Date().toISOString(),
     endpoints: {
       auth: '/api/auth',
       driver: '/api/driver',

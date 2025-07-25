@@ -1,13 +1,15 @@
 services:
   - type: web
-    name: carpool-backend
+    name: carpool-backend-api
     env: node
     plan: free
-    buildCommand: npm ci
+    buildCommand: npm ci --only=production
     startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 10000
       - key: JWT_SECRET
         value: 3dd3333420a998257d86483b82484f31632a7ea60020634860f3c59e66c91862b92ce592c42d967cf2ac418d2db40d92349db8fffc204cfdf9687e7b3a205116
       - key: MONGODB_URI
